@@ -27,4 +27,27 @@ describe("Utils test suite", () => {
 
     expect(parseUrl.query).toEqual(result);
   });
+
+  test("Parse Url method test - error case function", () => {
+    function expectErr() {
+      Utils.parseUrl("");
+    }
+
+    expect(expectErr).toThrow("Empty url");
+  });
+
+  test("Parse Url method test - error case arrow function", () => {
+    expect(() => {
+      Utils.parseUrl("");
+    }).toThrow("Empty url");
+  });
+
+  test("Parse Url method test - error case try catch", () => {
+    try {
+      Utils.parseUrl("");
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error).toHaveProperty("message");
+    }
+  });
 });
